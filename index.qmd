@@ -67,56 +67,13 @@ V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability p
 
 # Table 1: Studies on using ML algorithms in predicting soil permeability
 
-<table>
-  <thead>
-    <tr>
-      <th>Reference</th>
-      <th>ML Models</th>
-      <th>Input Parameters</th>
-      <th>Output Parameter</th>
-      <th>Dataset Size</th>
-      <th>Source of Data/Location</th>
-      <th>Model Accuracy</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>(Ganjidoost et al., 2016)</td>
-      <td>Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS)</td>
-      <td>Water content, dry density, saturation, Atterberg limits, gravel, sand, clay, fines percentage</td>
-      <td>Soil permeability coefficient</td>
-      <td>610 samples</td>
-      <td>NA</td>
-      <td>R² = 0.975</td>
-    </tr>
-    <tr>
-      <td>(Sinha & Wang, 2008)</td>
-      <td>ANN</td>
-      <td>Degree of compaction, mean grain size, effective grain size, plastic limit, liquid limit</td>
-      <td>Soil permeability coefficient</td>
-      <td>55 samples</td>
-      <td>NA</td>
-      <td>R² = 0.901</td>
-    </tr>
-    <tr>
-      <td rowspan="3">(Bui et al., 2022)</td>
-      <td>Teaching-Learning-Based Optimization of ANN (TLBO-ANN)</td>
-      <td>Water content, void ratio, specific density, liquid limit, plastic limit, clay content</td>
-      <td>Soil permeability coefficient</td>
-      <td>84 samples</td>
-      <td>NA</td>
-      <td>R = 0.905, RMSE = 0.351, MAE = 0.198</td>
-    </tr>
-    <tr>
-      <td>RF</td>
-      <td colspan="5"></td>
-      <td>R² = 0.949, RMSE = 0.000752, MAE = 0.000269</td>
-    </tr>
-    <tr>
-      <td>Group Method of Data Handling</td>
-      <td colspan="5"></td>
-      <td>R² = 0.808, RMSE = 0.000907, MAE = 0.000414</td>
-    </tr>
-    <!-- Add more rows following this pattern -->
-  </tbody>
-</table>
+| Reference                  | ML Models                                            | Input Parameters                                                                 | Output Parameter            | Dataset Size | Source of Data/Location             | Model Accuracy                                                                                                                                     |
+|----------------------------|-----------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------|--------------|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Ganjiodost et al., 2016    | Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS) | Water content, dry density, saturation, Atterberg limits, gravel, sand, clay, fines percentage | Soil permeability coefficient | 610 samples  | NA                                  | R²=0.975                                                                                                                                          |
+| Sinha & Wang, 2008         | ANN                                                 | Degree of compaction, mean grain size, effective grain size, plastic limit, liquid limit | Soil permeability coefficient | 55 samples   | NA                                  | R² = 0.901                                                                                                                                         |
+| Bui et al., 2022           | Teaching-Learning-Based Optimization of ANN (TLBO-ANN) | Water content, void ratio, specific density, liquid limit, plastic limit, clay content | Soil permeability coefficient | 84 samples   | NA                                  | R = 0.905, RMSE = 0.351, MAE = 0.198                                                                                                              |
+| R. Zhang & Zhang, 2024     | Gene Expression Programming                         | Effective size, mean grain size, particle size, void ratio                       | Soil permeability coefficient | 81 samples   | Dataset compiled from multiple sources | R² = 0.937, RMSE = 0.000483, MAE = 0.000245<br>R² = 0.949, RMSE = 0.000752, MAE = 0.000269<br>R² = 0.808, RMSE = 0.000907, MAE = 0.000414          |
+| Ahmad et al., 2022         | Gaussian Process Regression (PUK)<br>Gaussian Process Regression (Poly)<br>Gaussian Process Regression (RBF) | Liquid limit, plastic limit, clay content, void ratio, natural water content, specific density | Soil permeability coefficient | 84 samples   | Dataset compiled from multiple sources | R = 0.9754, R² = 0.951, MAE = 0.0037, RMSE = 0.0062<br>R = 0.9624, R² = 0.926, MAE = 0.0223, RMSE = 0.0634<br>R = 0.9387, R² = 0.881, MAE = 0.0034, RMSE = 0.0047 |
+| Tan et al., 2023           | RF<br>GBDT<br>ANN<br>Multiple Linear Regression     | Void ratio, fines content, specific gravity, degree of saturation after compaction, plasticity index | Soil permeability coefficient | 329 samples  | Dataset compiled from multiple sources | ?                                                                                                                                                  |
+| B. Singh et al., 2021      | SVM with Pearson VII Kernel<br>SVM with Radial Basis Kernel<br>Gaussian Process (GP) with Pearson VII Kernel | Fly ash, sand, specific gravity, time, head                                     | Soil permeability coefficient | 95 samples   | NA                                  | R = 0.9708, RMSE = 0.0190, NSE = 0.9419<br>R = 0.9458, RMSE = 0.0257, NSE = 0.8943<br>R = 0.7113, RMSE = 0.0723, NSE = 0.1626                     |
+
