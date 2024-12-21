@@ -1,10 +1,10 @@
 ---
-title: "Stroke Prediction Based on Demographics and Medical History"
-subtitle: "INFO 511 - Fall 2024 - Final Project"
-author: 
-  - name: "Coding Wildcats"
-    affiliations:
-      - name: "School of Information, University of Arizona"
+title: "A Comprehensive Review of Machine Learning Algorithms for Geotechnical Engineering Applications"
+subtitle: "INFO 698: Capstone Project  - Fall 2024 - Final Report"
+author:
+  - name: "Sahand Motameni "
+    Advisor:
+      - name: "Professor Greg Chism"
 format:
    html:
     code-tools: true
@@ -17,276 +17,64 @@ execute:
 jupyter: python3
 ---
 
-## Abstract
+## 1. Objective of the Project 
 
-In this project, we aimed to predict whether a person is at risk of having a stroke using machine learning models. We used a healthcare dataset containing information about individuals (like gender, age, health status, etc.). Our goal was to train multiple machine learning models and evaluate their classification accuracy.
+This project aims to conduct a comprehensive review of machine learning (ML) algorithms, specifically examining their applications, advantages, and disadvantages in the field of geotechnical engineering. The review is designed for civil engineers who already possess a basic understanding of ML but may struggle to select the most appropriate algorithm for their specific research or professional projects. By detailing the key features of prominent ML models and offering practical insights into their strengths and limitations, this project seeks to bridge the knowledge gap and improve decision-making capabilities for civil engineers working with ML in various subfields of it including geotechnical engineering.
+This project responds to a significant challenge faced by many engineers: the complexity of choosing the right ML method for their needs. While experts in data science and computer science are well-versed in a wide range of algorithms, engineers often lack the nuanced understanding required to apply these models effectively in engineering contexts. Current solutions, such as existing literature or technical resources, tend to be overly specialized or inaccessible to those outside of data science disciplines. This review will present the algorithms in a more approachable and context-specific way, highlighting real-world engineering applications to ensure greater relevance and usability.
 
-## Introduction
+## 2. Introduction
 
-Taking care of one’s health is an important consideration for anyone, but especially young adults who are just starting their own lives. For our project we wanted to do our analysis on data relating to strokes and the risk of strokes. Our models attempt to predict whether a number of factors can be correlated with the risk of strokes. It is important to understand the risk factors of strokes (and other illnesses) because it is much easier to change your lifestyle young but also be aware that family members may be at a high risk of having a stroke and be prepared by knowing the signs of a stroke. This project could help many people, young and old, so they know the risk factors that may contribute to the chance of them having a stroke.
+In recent years, the integration of machine learning (ML) techniques into geotechnical engineering has significantly transformed traditional practices, offering innovative solutions to complex problems. The increasing availability of extensive datasets in geotechnical fields has paved the way for the adoption of ML approaches, enabling more accurate predictions and efficient analyses (Shao et al., 2023). 
+ML algorithms, such as support vector machines (SVM), artificial neural networks (ANN), and decision trees (DT), have been effectively applied to a variety of geotechnical challenges. These include soil classification, rock type identification, landslide susceptibility assessment, and prediction of geotechnical material properties (Shao et al., 2023). 
+The evolution of artificial intelligence has further enhanced the application of ML methods in geotechnical engineering, extending their use from planning and design to construction phases. This progression has led to the development of more robust solutions to geotechnical problems, addressing the inherent complexities of geological bodies and the multifaceted nature of geotechnical issues (W. Zhang et al., 2023). 
+ML techniques have demonstrated remarkable capabilities in predicting various geotechnical parameters essential for design and analysis. For instance, they have been employed to estimate soil compaction parameters, such as maximum dry density and optimum moisture content, which are crucial for ensuring the stability and integrity of structures like earth dams and embankments (W. Zhang et al., 2023). 
+Additionally, ML models have been utilized to predict the undrained shear strength of sensitive clays, aiding in the assessment of foundation stability. They have also been applied to forecast soil settlement, rock compressive strength, and slope stability, thereby enhancing the safety and reliability of geotechnical structures (Phoon & Zhang, 2023). 
+Despite these advancements, selecting the most appropriate ML algorithm for specific geotechnical applications remains a challenge. The performance of different algorithms can vary significantly depending on the particular problem and dataset characteristics. Therefore, a comprehensive understanding of various ML techniques and their suitability for distinct geotechnical tasks is essential for civil engineers aiming to implement these methods effectively (Reddy, 2017). 
+This project aims to bridge this knowledge gap by providing a detailed review of prominent ML algorithms and their applications in geotechnical engineering. By examining the advantages and limitations of each method, the report seeks to equip civil engineers with the insights necessary to make informed decisions when selecting and applying ML techniques in their projects.
 
-## Data
 
-The data set we have decided to use is from a study published in China in 2020: Pathan, Muhammad Salman & Zhang, Jianbiao & John, Deepu & Nag, Avishek & Dev, Soumyabrata. (2020). Identifying Stroke Indicators Using Rough Sets. IEEE Access. 8. 10.1109/ACCESS.2020.3039439. The data from this study was then taken and uploaded on Kaggle, which is where we first found it, though we also went directly to the source to determine validity. Since this data set does deal with patient information there are some ethical considerations, but the study that published this data has de-identified it, removing personal identifiers so the chances of being able to determine the identity of any one individual in this study from this data alone is quite small. The data set has 12 columns, with observations including demographic information such as age, gender, marital status, and employment status, as well as medical information such as BMI, glucose levels, smoking history, etc. A glimpse at the dataset can be found below:
+## 3. Review of Research on Using ML in Geotechnical Engineering 
 
-```{python}
-#| label: loaddata
-#| echo: false
-import pandas as pd
-stroke = pd.read_csv("data/healthcare-dataset-stroke-data.csv")
-print(stroke.head())
-```
+The use of ML in geotechnical engineering has expanded significantly, offering advanced predictive capabilities that enhance traditional analysis and decision-making processes. ML algorithms have proven adept at handling the complex and nonlinear relationships inherent in geotechnical data, enabling engineers to model and predict a wide range of parameters with greater accuracy and efficiency.
+In geotechnical applications, ML can predict both binary variables and numerical variables that are crucial for various engineering tasks. Binary predictions often involve classification problems, such as determining the stability of a slope (stable/unstable) or assessing the likelihood of a landslide occurring. Numerical predictions, on the other hand, encompass continuous variables critical for design and analysis, such as permeability, shear strength, compressibility factors, and settlement behavior. These predictions are vital for designing safe and efficient foundations, slopes, and other geotechnical structures.
+ML's ability to incorporate diverse datasets—ranging from soil properties and rock mechanics to environmental conditions and structural loads—has enabled advancements in predicting these parameters. For instance, models like ANN, SVM, and random forests have been applied to analyze complex interactions between input variables and produce reliable results. These applications reduce the reliance on extensive laboratory testing and provide more time-efficient solutions for practical engineering problems.
+This section serves as an overview of how ML is utilized to predict various parameters in geotechnical engineering. The following subsections will focus on individual parameters, such as permeability, shear strength, and slope stability, providing a detailed exploration of ML's role in predicting each and its practical implications for the field.
 
-The dataset includes variables such as gender, smoking status, employment status, and marital status which are qualitative variables. Other variables such as age, BMI, and glucose index are all quantitative.
 
-```{python}
-#| label: loaddatainfo
-#| echo: false
-import pandas as pd
-stroke = pd.read_csv("data/healthcare-dataset-stroke-data.csv")
-print(stroke.info())
-```
+## 3.1. ML Approaches to Soil Permeability Prediction
 
-As mentioned this dataset has several demographic variables and then a variable that tracks if that patient had a stroke. From this, we hope to be able to create a model to predict the possibility of an individual having a stroke based on their demographic information and medical history of an individual. Which is important because identifying key risk factors of a stroke can be used for prevention and more effective monitoring of patients.
+Soil permeability, which measures the ability of soil to transmit water, is a fundamental parameter in geotechnical engineering. It plays a critical role in a variety of applications, including groundwater flow modeling, slope stability analysis, and the design of drainage and filtration systems. Accurate estimation of soil permeability is essential for ensuring the safety, efficiency, and sustainability of engineering projects, particularly in water resource management and environmental protection (Elhakim, 2016).
+Traditionally, soil permeability is determined through laboratory tests, such as the constant head test for cohesive soils (ASTM D2434) and the falling head test for granular soils (ASTM D2435), as well as field measurements like pump tests. While these methods provide reliable results, they are often time-consuming, expensive, and logistically challenging, especially for large-scale projects or sites that are remote or difficult to access. Such constraints have driven the development and adoption of alternative methods that can provide accurate predictions with greater efficiency.
+ML models have emerged as a promising solution for predicting soil permeability based on readily available soil properties. By leveraging input features such as grain size distribution, void ratio, Atterberg limits, plasticity index, and soil density, ML models can analyze complex relationships between these parameters to estimate permeability with high accuracy. This approach reduces the reliance on extensive physical testing, saving both time and resources while maintaining precision.
+One significant aspect of ML applications in this field is the heterogeneous nature of soil types, which greatly influences model performance. The permeability behavior of fine-grained soils differs substantially from that of coarse-grained soils due to variations in particle size, structure, and pore connectivity. Fine-grained soils typically exhibit lower permeability and are more sensitive to changes in moisture content and compaction, while coarse-grained soils tend to have higher permeability and exhibit more predictable flow behavior.
+Given these differences, researchers often divide datasets into subsets based on soil particle size or classifications, such as fine-grained and coarse-grained soils, to improve the accuracy and reliability of ML models. By training models on datasets that are more homogeneous in terms of soil type, the algorithms can better capture the unique characteristics of each group, leading to more precise predictions. This approach also allows for tailored model selection and parameter tuning, as the optimal ML algorithm for fine-grained soils may differ from that for coarse-grained soils.
+In recent studies, advanced ML algorithms such as random forests, SVM, and ANN have shown remarkable success in predicting soil permeability. These models not only account for nonlinear relationships but also adapt to variations in the input data, making them well-suited for geotechnical applications. Moreover, feature selection techniques are often applied to identify the most influential parameters, further enhancing model interpretability and reducing computational complexity. Many researchers have studied the application of ML in predicting the permeability of soil (see table 1).  
+Ganjidoost et al. (2016) introduced a hybrid Genetic Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS) to predict soil permeability coefficients (SPC) across fine-grained, mixed, and granular soils. The study utilized a dataset of 610 samples, with 338 fine-grained, 178 mixed, and 94 granular soils, to develop tailored models for each soil type. Genetic algorithms were employed to optimize the subtractive clustering parameters that define the fuzzy rule base in the ANFIS framework, while a hybrid gradient descent and least squares algorithm was used for model training. This combination allowed the models to effectively handle the nonlinear relationships inherent in soil permeability predictions. The dataset was divided into 80% training and 20% testing sets using Fuzzy C-Means clustering to ensure uniform data distribution and preserve statistical similarities between the subsets. The GA-ANFIS models demonstrated superior performance compared to ANN and modified empirical equations in both prediction accuracy and generalization capabilities. The results highlighted the need for soil-specific models and the effectiveness of combining optimization and soft computing techniques to address the challenges of SPC prediction, particularly for heterogeneous soil types.
+Sinha & Wang (2008) developed ANN models to predict permeability coefficients alongside maximum dry density (MDD) and optimum moisture content (OMC) of soils. The study used a database derived from compaction and permeability tests on 55 soil blends prepared with bentonite, limestone dust, sand, and gravel. They trained separate ANN models for permeability and compaction properties, using features such as grain size distribution, Atterberg limits, and void ratios as inputs. The dataset was split into 90% for training and 10% for testing, with an additional 10% of the training set allocated for validation during network calibration. The study compared ANN models against traditional statistical methods and found that ANNs produced predictions within a 95% confidence interval. Their findings also highlighted the ANN's superior ability to adapt and generalize, making it a reliable tool for estimating permeability coefficients under varying soil compositions and compaction conditions. This research demonstrates the efficacy of ANNs in simplifying the traditionally labor-intensive process of soil property prediction.
+Bui et al. (2022) proposed a hybrid Teaching Learning-Based Optimization-Artificial Neural Network (TLBO-ANN) model to predict the soil permeability coefficient (k-value). The study utilized a dataset of 84 soil samples from the Da Nang-Quang Ngai expressway project in Vietnam. Input parameters included natural water content, void ratio, specific gravity, liquid limit, plastic limit, and clay content. The dataset was normalized and split into 70% for training and 30% for testing. The TLBO algorithm was employed to optimize the ANN, improving its convergence speed and accuracy. Statistical validation metrics, including correlation coefficient (R = 0.905), RMSE, and MAE, confirmed the model's superior predictive performance compared to existing methods. The authors emphasized that the hybrid approach effectively combines the strengths of TLBO and ANN, offering a robust solution for k-value prediction with minimal computational effort.
+R. Zhang & Zhang, (2024) investigated the prediction of soil permeability coefficients using gene expression programming (GEP), comparing it with random forest (RF), group method of data handling (GMDH), and eight empirical models. They compiled a dataset of 81 samples using parameters such as effective size (d10), mean grain size (d50), particle diameters at 60% cumulative content (d60), and void ratio (e). The GEP model exhibited high accuracy (R² = 0.937) and outperformed empirical models, demonstrating the significant influence of particle size and void ratio on permeability. Sensitivity and SHAP analyses ranked d10 as the most impactful feature, followed by d50 and e, while d60 had negligible effects. The study underscores GEP's ability to provide explicit predictive equations suitable for engineering applications, such as seepage analysis and pollutant transport in soils, enhancing its relevance for integrating ML in geotechnical engineering.
+Ahmad et al. (2022) applied Gaussian process regression (GPR) to estimate the soil permeability coefficient using six input parameters: liquid limit (LL), plastic limit (PL), clay content (CC), void ratio (e), natural water content (w), and specific density (γ). They developed and compared GPR models with different kernel functions—Pearson universal kernel (PUK), radial basis function (RBF), and polynomial kernel (Poly). The dataset, consisting of 84 soil samples from the Da Nang–Quang Ngai project in Vietnam, was divided into 70% training and 30% testing subsets. The GPR-PUK model outperformed others with an R² of 0.951, showcasing its superior predictive accuracy. Sensitivity analysis indicated that natural water content (w) and void ratio (e) were the most significant predictors, while specific density (γ) was the least influential. Comparisons with ANN, SVM, RF, and M5P models revealed GPR-PUK's superior performance, highlighting its potential in geotechnical applications. This study emphasizes the efficacy of GPR models in achieving high precision with limited data and underscores the importance of appropriate kernel function selection in ML modeling.
+Tan et al. (2023) explored the use of ML models to predict the hydraulic conductivity of compacted soil barriers used in landfill liners and covers. Their study utilized a database of 329 records, comprising 12 impact factors, including void ratio, fines content, specific gravity, and degree of saturation after compaction. The authors employed three ML algorithms—Random Forest (RF), Gradient Boosting Decision Tree (GBDT), and Neural Network (NNW)—and compared them with Multiple Linear Regression (MLR).
+The RF model demonstrated superior accuracy, achieving 93% of predictions within a 10-fold difference from measured values. Sensitivity analysis identified void ratio, fines content, and specific gravity as the most influential factors. To enhance usability, the authors developed simplified models requiring fewer input variables without significantly compromising predictive accuracy. These findings underscore the effectiveness of ML in streamlining soil evaluation processes for landfill applications, emphasizing data-driven feature selection and validation.
+B. Singh et al. (2021) investigated the permeability of soil using support vector machines (SVM), Gaussian process regression (GP), random forest (RF), and multi-linear regression (MLR). They utilized 95 datasets, with inputs including percentages of sand and fly ash, specific gravity, time, and water head, and found that the Pearson VII kernel function-based SVM achieved the highest accuracy (R = 0.97, NSE = 0.94). Sensitivity analysis revealed that time and water head significantly influenced predictions. The study highlights the efficacy of ML techniques, particularly SVM, for reliable estimation of soil permeability, underscoring the importance of kernel function selection in modeling.
+Li et al. (2022) developed a soil database for Singapore that integrates predictions of soil permeability using ML techniques, particularly Random Forest (RF) and Artificial Neural Networks (ANN). The study highlights the importance of variables such as plasticity, grain size distribution, and spatial location in predicting permeability. A key finding was that the logarithmic transformation of permeability values enhanced model accuracy, with RF outperforming ANN, likely due to limited data availability. This work emphasizes the critical role of ML in creating geotechnical databases for applications such as regional water balance and slope stability analysis.
+V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability prediction by leveraging five non-wavelet and five wavelet-enhanced machine learning (ML) algorithms, including Multilayer Perceptron (MLP), Co-Active Neuro-Fuzzy Inference System (CANFIS), Support Vector Machine (SVM), Decision Tree (DT), and Random Forest (RF). The study employed a dataset comprising sand, silt, clay, organic content (OC), bulk density (BD), and particle density (PD) to develop the models, with the wavelet-transformed RF (W-RF) model achieving the highest accuracy. Statistical evaluations during training and testing phases showed that W-RF outperformed other models, with values such as NSE = 0.900 and RMSE = 1.53 cm/hr. Sensitivity analysis revealed that soil texture parameters (clay, silt, and sand) were the most influential factors in permeability prediction, ranking ahead of OC, BD, and PD. The study highlights the efficacy of wavelet-enhanced ML approaches in accurately predicting soil permeability, emphasizing their potential applications in geotechnical projects such as groundwater management and structural design.
 
-Source: https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset
+# Table 1: Studies on using ML algorithms in predicting soil permeability.
 
-This data comes from a study published in China in 2020: Pathan, Muhammad Salman & Zhang, Jianbiao & John, Deepu & Nag, Avishek & Dev, Soumyabrata. (2020). Identifying Stroke Indicators Using Rough Sets. IEEE Access. 8. 10.1109/ACCESS.2020.3039439.
-
-## Visualizations
-
-Across the population, there is a higher proportion of people who do not suffer from stroke as compared to those who do suffer from stroke.
-
-```{python}
-#| label: visualization_1
-#| echo: false
-import matplotlib.pyplot as plt
-import seaborn as sns
-plt.figure(figsize=(5,3))
-ax = sns.countplot(x='stroke', data=stroke)
-plt.title('Distribution of stroke')
-```
-
-As for gender analysis, there is a higher proportion of females as compared to males surveyed.
-
-```{python}
-#| label: visualization_2
-#| echo: false
-plt.figure(figsize = (6, 6))
-count_female = (stroke['gender'] == 'Female').sum()
-count_male = (stroke['gender'] == 'Male').sum()
-temp = [count_female,count_male]
-labels = ['Female','Male']
-textprops = {"fontsize":12}
-colors = ['#4F6272', '#B7C3F3']
-plt.pie(temp,labels=labels,autopct='%1.2f%%',textprops=textprops,colors=colors)
-plt.title('Gender Distribution')
-plt.show()
-```
-
-In terms of residence type, the distribution for rural vs urban are highly equivalent.
-
-```{python}
-#| label: visualization_3
-#| echo: false
-plt.figure(figsize = (6, 6))
-count_urban = (stroke['Residence_type'] == 'Urban').sum()
-count_rural = (stroke['Residence_type'] == 'Rural').sum()
-temp = [count_urban,count_rural]
-labels = ['Urban','Rural']
-textprops = {"fontsize":12}
-colors = ['#4F6272', '#B7C3F3']
-plt.pie(temp,labels=labels,autopct='%1.2f%%', textprops=textprops,colors=colors)
-plt.title('Distribution for Residence Type')
-plt.show()
-```
-
-As for marital status, there is a higher proportion of people surveyed who are married, as compared to those who are not married.
-
-```{python}
-#| label: visualization_4
-#| echo: false
-plt.figure(figsize = (6, 6))
-count_yes = (stroke['ever_married'] == 'Yes').sum()
-count_no = (stroke['ever_married'] == 'No').sum()
-temp = [count_yes,count_no]
-labels = ['Married','Not Married']
-textprops = {"fontsize":12}
-colors = ['#4F6272', '#B7C3F3']
-plt.pie(temp,labels=labels,autopct='%1.2f%%',textprops=textprops,colors=colors)
-plt.title('Distribution for Marital Status')
-plt.show()
-```
-
-As for the distribution for work type across the population, a majority of the people surveyed worked in private, with lesser distribution of the population working as self-employed, looking after children, or working government jobs. There is a small proportion of the population who have never worked.
-
-```{python}
-#| label: visualization_5
-#| echo: false
-plt.figure(figsize=(6,6))
-count_private = (stroke['work_type'] == 'Private').sum()
-count_self_employed = (stroke['work_type'] == 'Self-employed').sum()
-count_children = (stroke['work_type'] == 'children').sum()
-count_govt_job = (stroke['work_type'] == 'Govt_job').sum()
-count_never_worked = (stroke['work_type'] == 'Never_worked').sum()
-temp = [count_private,count_self_employed, count_children, count_govt_job, count_never_worked]
-textprops = {"fontsize":12}
-colors = ['#4F6272', '#B7C3F3', '#DD7596', '#8EB897','#9A5169']
-plt.pie(temp,labels=['Private','Self employed', 'Children','Govt Job','Never Worked'], autopct='%1.2f%%',textprops=textprops,colors=colors)
-plt.title('Distribution for Work Type')
-plt.show()
-```
-
-While for the distribution of smoking status, there is a higher proportion of the population who have never smoked. Followed by a smaller proportion of the population with smoking status being unknown and formerly smoked. Only about 15% of the population surveyed smokes.
-
-```{python}
-#| label: visualization_6
-#| echo: false
-plt.figure(figsize = (6, 6))
-count_never_smoked = (stroke['smoking_status'] == 'never smoked').sum()
-count_formerly_smoked = (stroke['smoking_status'] == 'formerly smoked').sum()
-count_smokes = (stroke['smoking_status'] == 'smokes').sum()
-count_unknown = (stroke['smoking_status'] == 'Unknown').sum()
-temp = [count_never_smoked,count_formerly_smoked,count_smokes,count_unknown]
-labels = ['Never smoked','Formerly smoked', 'Smokes','Unknown']
-textprops = {"fontsize":12}
-colors = ['#4F6272', '#B7C3F3', '#DD7596', '#8EB897']
-plt.pie(temp,labels=labels,autopct='%1.2f%%',textprops=textprops, colors=colors)
-plt.title('Distribution for smoking status')
-plt.show()
-```
-
-## Methodology
-
-The first step of our data cleaning is to evaluate how much of our data is missing. Of 12 variables, only BMI has missing values.
-
-```{python}
-#| label: importpackages
-#| echo: false
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split, cross_val_score, KFold
-from sklearn.metrics import r2_score
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.svm import SVC
-from sklearn.neural_network import MLPClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import LabelEncoder
-```
-
-```{python}
-#| label: plotmissing
-#| echo: false
-plt.figure(figsize=(10,6))
-sns.displot(
-    data=stroke.isna().melt(value_name="missing"),
-    y="variable",
-    hue="missing",
-    multiple="fill",
-    aspect=1.25
-).set(title='Proportion of Missing Values in Dataset')
-```
-
-```{python}
-#| label: cleandata
-#| echo: false
-stroke = stroke.dropna()
-stroke['gender'] = LabelEncoder().fit_transform(stroke['gender'])
-stroke['ever_married'] = LabelEncoder().fit_transform(stroke['ever_married'])
-stroke['work_type'] = LabelEncoder().fit_transform(stroke['work_type'])
-stroke['Residence_type'] = LabelEncoder().fit_transform(stroke['Residence_type'])
-stroke['smoking_status'] = LabelEncoder().fit_transform(stroke['smoking_status'])
-stroke.drop(columns=['id'],axis=1,inplace=True) 
-```
-
-Missing values were dropped from the dataset and categorical variables (gender, marital status, work type, residence type and smoking status) were transformed into factors. The correlation matrix of all variables, minus the ID number, is displayed on the heatmap:
-
-```{python}
-#| label: plotcorrelation
-#| echo: false
-corr = stroke.corr()
-plt.figure(figsize=(10, 8))
-sns.heatmap(corr, annot=True)
-plt.title('Variable Correlation Heatmap')
-plt.show()
-```
-
-After preparing the dataset, we split it into training and testing sets. The training set, which comprises 80% of the data, is used to train our machine learning models, while the testing set, representing 20% of the data, is reserved for final evaluation. This approach ensures that we have unseen data to measure how well the models generalize.
-
-We trained five different machine learning models on this dataset: Random Forest, Decision Tree, Support Vector Machine (SVM), Artificial Neural Network (ANN), and Logistic Regression. Each of these models uses a unique method to identify patterns in the data. The Random Forest model, for instance, builds multiple decision trees and combines their predictions to create a more stable and robust model. The Decision Tree model uses a single tree to make predictions, which is often more prone to overfitting. The Support Vector Machine works by finding the optimal hyperplane that separates classes in the feature space. The Artificial Neural Network mimics how neurons in the human brain process information, making it effective for complex relationships in the data. Finally, Logistic Regression is a linear model that is simple, interpretable, and computationally efficient.
-
-To evaluate the performance of these models, we employed 5-fold cross-validation. This method splits the training data into five equally sized segments (folds). Each model is trained on four of these folds while the fifth fold is used as a validation set. This process is repeated five times, with each fold serving as a validation set once. Cross-validation provides a more reliable estimate of the model's performance because it reduces the likelihood of overfitting to a single train-test split. For each model, we calculated the accuracy for each fold, as well as the average accuracy across all five folds.
-
-```{python}
-#| label: MLmodels
-#| warning: false
-#| echo: false
-# Split the data (20/80)
-X = stroke.drop(columns=['stroke'], axis=1) 
-Y = stroke['stroke']
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
-
-# Define the ML models
-models = {
-    'Random Forest': RandomForestClassifier(random_state=42),
-    'Decision Tree': DecisionTreeClassifier(random_state=42),
-    'Support Vector Machine': SVC(kernel='linear', random_state=42),
-    'Artificial Neural Network': MLPClassifier(random_state=42, max_iter=500),
-    'Logistic Regression': LogisticRegression(max_iter=500, random_state=42)
-}
-
-# Set up cross-validation
-kfold = KFold(n_splits=5, shuffle=True, random_state=42)
-
-# Store the results
-results = {'Model': [], 'Fold 1': [], 'Fold 2': [], 'Fold 3': [], 'Fold 4': [], 'Fold 5': [], 'Average Accuracy': []}
-
-# Train each model, calculate cross-validation accuracy
-for model_name, model in models.items():
-    accuracy_scores = cross_val_score(model, X_train, Y_train, cv=kfold, scoring='accuracy')
-    avg_accuracy = np.mean(accuracy_scores)
-    # Add results to the results dictionary
-    results['Model'].append(model_name)
-    results['Fold 1'].append(accuracy_scores[0])
-    results['Fold 2'].append(accuracy_scores[1])
-    results['Fold 3'].append(accuracy_scores[2])
-    results['Fold 4'].append(accuracy_scores[3])
-    results['Fold 5'].append(accuracy_scores[4])
-    results['Average Accuracy'].append(avg_accuracy)
-
-# Display the accuracy results in a DataFrame
-results_df = pd.DataFrame(results)
-
-# Print the results DataFrame
-print("\nAccuracy for Each Fold and Average Accuracy for Each Model:")
-results_df
-```
-
-## Results
-
-The results indicate that the Random Forest model achieved the highest average accuracy at 96.05%, which was matched by Logistic Regression. The Support Vector Machine and Artificial Neural Network followed closely, with average accuracies of 96.03% and 95.93%, respectively. The Decision Tree model had the lowest performance, with an average accuracy of 92.21%. This is not surprising since Decision Trees are known to be sensitive to small changes in the training data, leading to higher variance. On the other hand, Random Forest, which combines multiple Decision Trees, reduces this variance and produces more stable predictions.
-
-The consistency of model performance across the five folds highlights the robustness of the Random Forest, Logistic Regression, and SVM models. Their accuracies for each fold were relatively stable, with small deviations from the average, indicating that these models generalize well to new, unseen data. The Decision Tree model exhibited slightly higher variability across the folds, further supporting the observation that it is less stable than the other models.
-
-In summary, the use of cross-validation allowed us to obtain a more accurate and unbiased assessment of model performance. Among the models, Random Forest and Logistic Regression showed the best overall performance in terms of both average accuracy and stability. Support Vector Machine and Artificial Neural Network also performed well but did not outperform Random Forest or Logistic Regression. The Decision Tree model had the lowest accuracy and was less stable, making it a less desirable choice for this problem. If model simplicity, speed, and interpretability are essential, Logistic Regression is an excellent option. However, if model robustness and predictive power are the priority, Random Forest would be the better choice.
-
-## Discussion
-
-We noted in this analysis that there was not a particularly strong correlation between the stroke outcome and the covariates listed in the dataset. The strongest correlation to a stroke outcome was with age at 0.23. Other notable correlations to a stroke outcome were hypertension, heart disease and glucose level, all at 0.14. It appears that the strongest correlations to a stroke outcome occur with participants’ physical properties rather than their demographics or living status.
-
-The model results show that individuals in this dataset could be classified by their stroke outcome based on the covariates age, gender, marital status, and employment status, BMI, glucose levels, and smoking history with a high degree of accuracy. Since there did not appear to be a particularly strong correlation to any one covariate, it was likely a combination of these factors associated with a stroke outcome.
-
-One of the limitations we encountered with this dataset is that there was actually a very small proportion of people who had a stroke compared to those that did not: 4.87% (N=249) of individuals had a stroke, while 95.1% (N=4861) did not. This created an unequal distribution within both the training and testing dataset, which may have artificially boosted the classification accuracy.
-
-In addition, although high average accuracy was obtained across the 5 models that we have analyzed upon, the context upon which the study was conducted was not able to return insights that we could consider to be generalizable across the general public internationally. The dataset was from a study that was conducted in China, with its funding agency being the National Natural Science Foundation of China and ADAPT Centre for Digital Content Technology funded through the SFI Research Centres Programme. The population studied was mainly the Chinese population. As such, observations gathered from the study would be considered more applicable towards the Asian population instead of the international population. 
-
-## References
-
-2020: Pathan, Muhammad Salman & Zhang, Jianbiao & John, Deepu & Nag, Avishek & Dev, Soumyabrata. (2020). Identifying Stroke Indicators Using Rough Sets. IEEE Access. 8. 10.1109/ACCESS.2020.3039439.
+| Reference                | ML models                                         | Input Parameters                                                                                   | Output Parameter              | Dataset Size | Source of data/Location           | Model Accuracy                                     |
+|--------------------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------|--------------------------------|--------------|-----------------------------------|----------------------------------------------------|
+| (Ganjidoost et al., 2016)| Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS) | Water content, dry density, saturation, Atterberg limits, gravel, sand, clay, fines percentage     | Soil permeability coefficient | 610 samples  | NA                                | R² = 0.975                                         |
+| (Sinha & Wang, 2008)     | ANN                                               | Degree of compaction, mean grain size, effective grain size, plastic limit, liquid limit           | Soil permeability coefficient | 55 samples   | NA                                | R² = 0.901                                         |
+| (Bui et al., 2022)       | Teaching-Learning-Based Optimization of ANN (TLBO-ANN) | Water content, void ratio, specific density, liquid limit, plastic limit, clay content            | Soil permeability coefficient | 84 samples   | NA                                | R = 0.905, RMSE = 0.351, MAE = 0.198              |
+| (R. Zhang & Zhang, 2024) | Gene Expression Programming                       | Effective size, mean grain size, particle size, void ratio                                         | Soil permeability coefficient | 81 samples   | Dataset compiled from multiple sources | R² = 0.937, RMSE = 0.000483, MAE = 0.000245        |
+|                          | RF                                                |                                                                                                    |                                |              |                                   | R² = 0.949, RMSE = 0.000752, MAE = 0.000269        |
+|                          | Group Method of Data Handling                     |                                                                                                    |                                |              |                                   | R² = 0.808, RMSE = 0.000907, MAE = 0.000414        |
+| (Ahmad et al., 2022)     | Gaussian Process Regression (PUK)                | Liquid limit, plastic limit, clay content, void ratio, natural water content, specific density     | Soil permeability coefficient | 84 samples   | Dataset compiled from multiple sources | R = 0.9754, R² = 0.951, MAE = 0.0037, RMSE = 0.0062 |
+|                          | Gaussian Process Regression (Poly)               |                                                                                                    |                                |              |                                   | R = 0.9624, R² = 0.926, MAE = 0.0223, RMSE = 0.0634 |
+|                          | Gaussian Process Regression (RBF)                |                                                                                                    |                                |              |                                   | R = 0.9387, R² = 0.881, MAE = 0.0034, RMSE = 0.0047 |
+| (Tan et al., 2023)       | RF                                                | Void ratio, fines content, specific gravity, degree of saturation after compaction, plasticity index | Soil permeability coefficient | 329 samples  | Dataset compiled from multiple sources | ?                                                |
+|                          | GBDT                                             |                                                                                                    |                                |              |                                   | ?                                                |
+|                          | ANN                                              |                                                                                                    |                                |              |                                   | ?                                                |
+|                          | Multiple Linear Regression                        |                                                                                                    |                                |              |                                   | ?                                                |
+| (B. Singh et al., 2021)  | SVM with Pearson VII Kernel                       | Fly ash, sand, specific gravity, time, head                                                       | Soil permeability coefficient | 95 samples   | NA                                | R = 0.9708, RMSE = 0.0190, NSE = 0.9419            |
