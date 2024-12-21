@@ -17,6 +17,12 @@ execute:
 jupyter: python3
 ---
 
+<style>
+body {
+    text-align: justify;
+}
+</style>
+
 ## 1. Objective of the Project 
 
 This project aims to conduct a comprehensive review of machine learning (ML) algorithms, specifically examining their applications, advantages, and disadvantages in the field of geotechnical engineering. The review is designed for civil engineers who already possess a basic understanding of ML but may struggle to select the most appropriate algorithm for their specific research or professional projects. By detailing the key features of prominent ML models and offering practical insights into their strengths and limitations, this project seeks to bridge the knowledge gap and improve decision-making capabilities for civil engineers working with ML in various subfields of it including geotechnical engineering.
