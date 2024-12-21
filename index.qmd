@@ -1,10 +1,6 @@
 ---
 title: "A Comprehensive Review of Machine Learning Algorithms for Geotechnical Engineering Applications"
 subtitle: "INFO 698: Capstone Project  - Fall 2024 - Final Report"
-author: 
-  - name: "Sahand Motameni"
-    Advisor: 
-     - name: "Professor Greg Chism"
 format:
    html:
      code-tools: true
