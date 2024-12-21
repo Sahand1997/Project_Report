@@ -1,0 +1,292 @@
+---
+title: "Stroke Prediction Based on Demographics and Medical History"
+subtitle: "INFO 511 - Fall 2024 - Final Project"
+author: 
+  - name: "Coding Wildcats"
+    affiliations:
+      - name: "School of Information, University of Arizona"
+format:
+   html:
+    code-tools: true
+    code-overflow: wrap
+    embed-resources: true
+editor: visual
+execute:
+  warning: false
+  echo: false
+jupyter: python3
+---
+
+## Abstract
+
+In this project, we aimed to predict whether a person is at risk of having a stroke using machine learning models. We used a healthcare dataset containing information about individuals (like gender, age, health status, etc.). Our goal was to train multiple machine learning models and evaluate their classification accuracy.
+
+## Introduction
+
+Taking care of one’s health is an important consideration for anyone, but especially young adults who are just starting their own lives. For our project we wanted to do our analysis on data relating to strokes and the risk of strokes. Our models attempt to predict whether a number of factors can be correlated with the risk of strokes. It is important to understand the risk factors of strokes (and other illnesses) because it is much easier to change your lifestyle young but also be aware that family members may be at a high risk of having a stroke and be prepared by knowing the signs of a stroke. This project could help many people, young and old, so they know the risk factors that may contribute to the chance of them having a stroke.
+
+## Data
+
+The data set we have decided to use is from a study published in China in 2020: Pathan, Muhammad Salman & Zhang, Jianbiao & John, Deepu & Nag, Avishek & Dev, Soumyabrata. (2020). Identifying Stroke Indicators Using Rough Sets. IEEE Access. 8. 10.1109/ACCESS.2020.3039439. The data from this study was then taken and uploaded on Kaggle, which is where we first found it, though we also went directly to the source to determine validity. Since this data set does deal with patient information there are some ethical considerations, but the study that published this data has de-identified it, removing personal identifiers so the chances of being able to determine the identity of any one individual in this study from this data alone is quite small. The data set has 12 columns, with observations including demographic information such as age, gender, marital status, and employment status, as well as medical information such as BMI, glucose levels, smoking history, etc. A glimpse at the dataset can be found below:
+
+```{python}
+#| label: loaddata
+#| echo: false
+import pandas as pd
+stroke = pd.read_csv("data/healthcare-dataset-stroke-data.csv")
+print(stroke.head())
+```
+
+The dataset includes variables such as gender, smoking status, employment status, and marital status which are qualitative variables. Other variables such as age, BMI, and glucose index are all quantitative.
+
+```{python}
+#| label: loaddatainfo
+#| echo: false
+import pandas as pd
+stroke = pd.read_csv("data/healthcare-dataset-stroke-data.csv")
+print(stroke.info())
+```
+
+As mentioned this dataset has several demographic variables and then a variable that tracks if that patient had a stroke. From this, we hope to be able to create a model to predict the possibility of an individual having a stroke based on their demographic information and medical history of an individual. Which is important because identifying key risk factors of a stroke can be used for prevention and more effective monitoring of patients.
+
+Source: https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset
+
+This data comes from a study published in China in 2020: Pathan, Muhammad Salman & Zhang, Jianbiao & John, Deepu & Nag, Avishek & Dev, Soumyabrata. (2020). Identifying Stroke Indicators Using Rough Sets. IEEE Access. 8. 10.1109/ACCESS.2020.3039439.
+
+## Visualizations
+
+Across the population, there is a higher proportion of people who do not suffer from stroke as compared to those who do suffer from stroke.
+
+```{python}
+#| label: visualization_1
+#| echo: false
+import matplotlib.pyplot as plt
+import seaborn as sns
+plt.figure(figsize=(5,3))
+ax = sns.countplot(x='stroke', data=stroke)
+plt.title('Distribution of stroke')
+```
+
+As for gender analysis, there is a higher proportion of females as compared to males surveyed.
+
+```{python}
+#| label: visualization_2
+#| echo: false
+plt.figure(figsize = (6, 6))
+count_female = (stroke['gender'] == 'Female').sum()
+count_male = (stroke['gender'] == 'Male').sum()
+temp = [count_female,count_male]
+labels = ['Female','Male']
+textprops = {"fontsize":12}
+colors = ['#4F6272', '#B7C3F3']
+plt.pie(temp,labels=labels,autopct='%1.2f%%',textprops=textprops,colors=colors)
+plt.title('Gender Distribution')
+plt.show()
+```
+
+In terms of residence type, the distribution for rural vs urban are highly equivalent.
+
+```{python}
+#| label: visualization_3
+#| echo: false
+plt.figure(figsize = (6, 6))
+count_urban = (stroke['Residence_type'] == 'Urban').sum()
+count_rural = (stroke['Residence_type'] == 'Rural').sum()
+temp = [count_urban,count_rural]
+labels = ['Urban','Rural']
+textprops = {"fontsize":12}
+colors = ['#4F6272', '#B7C3F3']
+plt.pie(temp,labels=labels,autopct='%1.2f%%', textprops=textprops,colors=colors)
+plt.title('Distribution for Residence Type')
+plt.show()
+```
+
+As for marital status, there is a higher proportion of people surveyed who are married, as compared to those who are not married.
+
+```{python}
+#| label: visualization_4
+#| echo: false
+plt.figure(figsize = (6, 6))
+count_yes = (stroke['ever_married'] == 'Yes').sum()
+count_no = (stroke['ever_married'] == 'No').sum()
+temp = [count_yes,count_no]
+labels = ['Married','Not Married']
+textprops = {"fontsize":12}
+colors = ['#4F6272', '#B7C3F3']
+plt.pie(temp,labels=labels,autopct='%1.2f%%',textprops=textprops,colors=colors)
+plt.title('Distribution for Marital Status')
+plt.show()
+```
+
+As for the distribution for work type across the population, a majority of the people surveyed worked in private, with lesser distribution of the population working as self-employed, looking after children, or working government jobs. There is a small proportion of the population who have never worked.
+
+```{python}
+#| label: visualization_5
+#| echo: false
+plt.figure(figsize=(6,6))
+count_private = (stroke['work_type'] == 'Private').sum()
+count_self_employed = (stroke['work_type'] == 'Self-employed').sum()
+count_children = (stroke['work_type'] == 'children').sum()
+count_govt_job = (stroke['work_type'] == 'Govt_job').sum()
+count_never_worked = (stroke['work_type'] == 'Never_worked').sum()
+temp = [count_private,count_self_employed, count_children, count_govt_job, count_never_worked]
+textprops = {"fontsize":12}
+colors = ['#4F6272', '#B7C3F3', '#DD7596', '#8EB897','#9A5169']
+plt.pie(temp,labels=['Private','Self employed', 'Children','Govt Job','Never Worked'], autopct='%1.2f%%',textprops=textprops,colors=colors)
+plt.title('Distribution for Work Type')
+plt.show()
+```
+
+While for the distribution of smoking status, there is a higher proportion of the population who have never smoked. Followed by a smaller proportion of the population with smoking status being unknown and formerly smoked. Only about 15% of the population surveyed smokes.
+
+```{python}
+#| label: visualization_6
+#| echo: false
+plt.figure(figsize = (6, 6))
+count_never_smoked = (stroke['smoking_status'] == 'never smoked').sum()
+count_formerly_smoked = (stroke['smoking_status'] == 'formerly smoked').sum()
+count_smokes = (stroke['smoking_status'] == 'smokes').sum()
+count_unknown = (stroke['smoking_status'] == 'Unknown').sum()
+temp = [count_never_smoked,count_formerly_smoked,count_smokes,count_unknown]
+labels = ['Never smoked','Formerly smoked', 'Smokes','Unknown']
+textprops = {"fontsize":12}
+colors = ['#4F6272', '#B7C3F3', '#DD7596', '#8EB897']
+plt.pie(temp,labels=labels,autopct='%1.2f%%',textprops=textprops, colors=colors)
+plt.title('Distribution for smoking status')
+plt.show()
+```
+
+## Methodology
+
+The first step of our data cleaning is to evaluate how much of our data is missing. Of 12 variables, only BMI has missing values.
+
+```{python}
+#| label: importpackages
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split, cross_val_score, KFold
+from sklearn.metrics import r2_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+from sklearn.neural_network import MLPClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import LabelEncoder
+```
+
+```{python}
+#| label: plotmissing
+#| echo: false
+plt.figure(figsize=(10,6))
+sns.displot(
+    data=stroke.isna().melt(value_name="missing"),
+    y="variable",
+    hue="missing",
+    multiple="fill",
+    aspect=1.25
+).set(title='Proportion of Missing Values in Dataset')
+```
+
+```{python}
+#| label: cleandata
+#| echo: false
+stroke = stroke.dropna()
+stroke['gender'] = LabelEncoder().fit_transform(stroke['gender'])
+stroke['ever_married'] = LabelEncoder().fit_transform(stroke['ever_married'])
+stroke['work_type'] = LabelEncoder().fit_transform(stroke['work_type'])
+stroke['Residence_type'] = LabelEncoder().fit_transform(stroke['Residence_type'])
+stroke['smoking_status'] = LabelEncoder().fit_transform(stroke['smoking_status'])
+stroke.drop(columns=['id'],axis=1,inplace=True) 
+```
+
+Missing values were dropped from the dataset and categorical variables (gender, marital status, work type, residence type and smoking status) were transformed into factors. The correlation matrix of all variables, minus the ID number, is displayed on the heatmap:
+
+```{python}
+#| label: plotcorrelation
+#| echo: false
+corr = stroke.corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(corr, annot=True)
+plt.title('Variable Correlation Heatmap')
+plt.show()
+```
+
+After preparing the dataset, we split it into training and testing sets. The training set, which comprises 80% of the data, is used to train our machine learning models, while the testing set, representing 20% of the data, is reserved for final evaluation. This approach ensures that we have unseen data to measure how well the models generalize.
+
+We trained five different machine learning models on this dataset: Random Forest, Decision Tree, Support Vector Machine (SVM), Artificial Neural Network (ANN), and Logistic Regression. Each of these models uses a unique method to identify patterns in the data. The Random Forest model, for instance, builds multiple decision trees and combines their predictions to create a more stable and robust model. The Decision Tree model uses a single tree to make predictions, which is often more prone to overfitting. The Support Vector Machine works by finding the optimal hyperplane that separates classes in the feature space. The Artificial Neural Network mimics how neurons in the human brain process information, making it effective for complex relationships in the data. Finally, Logistic Regression is a linear model that is simple, interpretable, and computationally efficient.
+
+To evaluate the performance of these models, we employed 5-fold cross-validation. This method splits the training data into five equally sized segments (folds). Each model is trained on four of these folds while the fifth fold is used as a validation set. This process is repeated five times, with each fold serving as a validation set once. Cross-validation provides a more reliable estimate of the model's performance because it reduces the likelihood of overfitting to a single train-test split. For each model, we calculated the accuracy for each fold, as well as the average accuracy across all five folds.
+
+```{python}
+#| label: MLmodels
+#| warning: false
+#| echo: false
+# Split the data (20/80)
+X = stroke.drop(columns=['stroke'], axis=1) 
+Y = stroke['stroke']
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+
+# Define the ML models
+models = {
+    'Random Forest': RandomForestClassifier(random_state=42),
+    'Decision Tree': DecisionTreeClassifier(random_state=42),
+    'Support Vector Machine': SVC(kernel='linear', random_state=42),
+    'Artificial Neural Network': MLPClassifier(random_state=42, max_iter=500),
+    'Logistic Regression': LogisticRegression(max_iter=500, random_state=42)
+}
+
+# Set up cross-validation
+kfold = KFold(n_splits=5, shuffle=True, random_state=42)
+
+# Store the results
+results = {'Model': [], 'Fold 1': [], 'Fold 2': [], 'Fold 3': [], 'Fold 4': [], 'Fold 5': [], 'Average Accuracy': []}
+
+# Train each model, calculate cross-validation accuracy
+for model_name, model in models.items():
+    accuracy_scores = cross_val_score(model, X_train, Y_train, cv=kfold, scoring='accuracy')
+    avg_accuracy = np.mean(accuracy_scores)
+    # Add results to the results dictionary
+    results['Model'].append(model_name)
+    results['Fold 1'].append(accuracy_scores[0])
+    results['Fold 2'].append(accuracy_scores[1])
+    results['Fold 3'].append(accuracy_scores[2])
+    results['Fold 4'].append(accuracy_scores[3])
+    results['Fold 5'].append(accuracy_scores[4])
+    results['Average Accuracy'].append(avg_accuracy)
+
+# Display the accuracy results in a DataFrame
+results_df = pd.DataFrame(results)
+
+# Print the results DataFrame
+print("\nAccuracy for Each Fold and Average Accuracy for Each Model:")
+results_df
+```
+
+## Results
+
+The results indicate that the Random Forest model achieved the highest average accuracy at 96.05%, which was matched by Logistic Regression. The Support Vector Machine and Artificial Neural Network followed closely, with average accuracies of 96.03% and 95.93%, respectively. The Decision Tree model had the lowest performance, with an average accuracy of 92.21%. This is not surprising since Decision Trees are known to be sensitive to small changes in the training data, leading to higher variance. On the other hand, Random Forest, which combines multiple Decision Trees, reduces this variance and produces more stable predictions.
+
+The consistency of model performance across the five folds highlights the robustness of the Random Forest, Logistic Regression, and SVM models. Their accuracies for each fold were relatively stable, with small deviations from the average, indicating that these models generalize well to new, unseen data. The Decision Tree model exhibited slightly higher variability across the folds, further supporting the observation that it is less stable than the other models.
+
+In summary, the use of cross-validation allowed us to obtain a more accurate and unbiased assessment of model performance. Among the models, Random Forest and Logistic Regression showed the best overall performance in terms of both average accuracy and stability. Support Vector Machine and Artificial Neural Network also performed well but did not outperform Random Forest or Logistic Regression. The Decision Tree model had the lowest accuracy and was less stable, making it a less desirable choice for this problem. If model simplicity, speed, and interpretability are essential, Logistic Regression is an excellent option. However, if model robustness and predictive power are the priority, Random Forest would be the better choice.
+
+## Discussion
+
+We noted in this analysis that there was not a particularly strong correlation between the stroke outcome and the covariates listed in the dataset. The strongest correlation to a stroke outcome was with age at 0.23. Other notable correlations to a stroke outcome were hypertension, heart disease and glucose level, all at 0.14. It appears that the strongest correlations to a stroke outcome occur with participants’ physical properties rather than their demographics or living status.
+
+The model results show that individuals in this dataset could be classified by their stroke outcome based on the covariates age, gender, marital status, and employment status, BMI, glucose levels, and smoking history with a high degree of accuracy. Since there did not appear to be a particularly strong correlation to any one covariate, it was likely a combination of these factors associated with a stroke outcome.
+
+One of the limitations we encountered with this dataset is that there was actually a very small proportion of people who had a stroke compared to those that did not: 4.87% (N=249) of individuals had a stroke, while 95.1% (N=4861) did not. This created an unequal distribution within both the training and testing dataset, which may have artificially boosted the classification accuracy.
+
+In addition, although high average accuracy was obtained across the 5 models that we have analyzed upon, the context upon which the study was conducted was not able to return insights that we could consider to be generalizable across the general public internationally. The dataset was from a study that was conducted in China, with its funding agency being the National Natural Science Foundation of China and ADAPT Centre for Digital Content Technology funded through the SFI Research Centres Programme. The population studied was mainly the Chinese population. As such, observations gathered from the study would be considered more applicable towards the Asian population instead of the international population. 
+
+## References
+
+2020: Pathan, Muhammad Salman & Zhang, Jianbiao & John, Deepu & Nag, Avishek & Dev, Soumyabrata. (2020). Identifying Stroke Indicators Using Rough Sets. IEEE Access. 8. 10.1109/ACCESS.2020.3039439.
