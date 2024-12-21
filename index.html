@@ -3134,17 +3134,17 @@ text-align: justify;
 <p>Soil permeability, which measures the ability of soil to transmit water, is a fundamental parameter in geotechnical engineering. It plays a critical role in a variety of applications, including groundwater flow modeling, slope stability analysis, and the design of drainage and filtration systems. Accurate estimation of soil permeability is essential for ensuring the safety, efficiency, and sustainability of engineering projects, particularly in water resource management and environmental protection (Elhakim, 2016). Traditionally, soil permeability is determined through laboratory tests, such as the constant head test for cohesive soils (ASTM D2434) and the falling head test for granular soils (ASTM D2435), as well as field measurements like pump tests. While these methods provide reliable results, they are often time-consuming, expensive, and logistically challenging, especially for large-scale projects or sites that are remote or difficult to access. Such constraints have driven the development and adoption of alternative methods that can provide accurate predictions with greater efficiency. ML models have emerged as a promising solution for predicting soil permeability based on readily available soil properties. By leveraging input features such as grain size distribution, void ratio, Atterberg limits, plasticity index, and soil density, ML models can analyze complex relationships between these parameters to estimate permeability with high accuracy. This approach reduces the reliance on extensive physical testing, saving both time and resources while maintaining precision. One significant aspect of ML applications in this field is the heterogeneous nature of soil types, which greatly influences model performance. The permeability behavior of fine-grained soils differs substantially from that of coarse-grained soils due to variations in particle size, structure, and pore connectivity. Fine-grained soils typically exhibit lower permeability and are more sensitive to changes in moisture content and compaction, while coarse-grained soils tend to have higher permeability and exhibit more predictable flow behavior. Given these differences, researchers often divide datasets into subsets based on soil particle size or classifications, such as fine-grained and coarse-grained soils, to improve the accuracy and reliability of ML models. By training models on datasets that are more homogeneous in terms of soil type, the algorithms can better capture the unique characteristics of each group, leading to more precise predictions. This approach also allows for tailored model selection and parameter tuning, as the optimal ML algorithm for fine-grained soils may differ from that for coarse-grained soils. In recent studies, advanced ML algorithms such as random forests, SVM, and ANN have shown remarkable success in predicting soil permeability. These models not only account for nonlinear relationships but also adapt to variations in the input data, making them well-suited for geotechnical applications. Moreover, feature selection techniques are often applied to identify the most influential parameters, further enhancing model interpretability and reducing computational complexity. Many researchers have studied the application of ML in predicting the permeability of soil (see table 1).<br>
 Ganjidoost et al. (2016) introduced a hybrid Genetic Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS) to predict soil permeability coefficients (SPC) across fine-grained, mixed, and granular soils. The study utilized a dataset of 610 samples, with 338 fine-grained, 178 mixed, and 94 granular soils, to develop tailored models for each soil type. Genetic algorithms were employed to optimize the subtractive clustering parameters that define the fuzzy rule base in the ANFIS framework, while a hybrid gradient descent and least squares algorithm was used for model training. This combination allowed the models to effectively handle the nonlinear relationships inherent in soil permeability predictions. The dataset was divided into 80% training and 20% testing sets using Fuzzy C-Means clustering to ensure uniform data distribution and preserve statistical similarities between the subsets. The GA-ANFIS models demonstrated superior performance compared to ANN and modified empirical equations in both prediction accuracy and generalization capabilities. The results highlighted the need for soil-specific models and the effectiveness of combining optimization and soft computing techniques to address the challenges of SPC prediction, particularly for heterogeneous soil types. Sinha &amp; Wang (2008) developed ANN models to predict permeability coefficients alongside maximum dry density (MDD) and optimum moisture content (OMC) of soils. The study used a database derived from compaction and permeability tests on 55 soil blends prepared with bentonite, limestone dust, sand, and gravel. They trained separate ANN models for permeability and compaction properties, using features such as grain size distribution, Atterberg limits, and void ratios as inputs. The dataset was split into 90% for training and 10% for testing, with an additional 10% of the training set allocated for validation during network calibration. The study compared ANN models against traditional statistical methods and found that ANNs produced predictions within a 95% confidence interval. Their findings also highlighted the ANN’s superior ability to adapt and generalize, making it a reliable tool for estimating permeability coefficients under varying soil compositions and compaction conditions. This research demonstrates the efficacy of ANNs in simplifying the traditionally labor-intensive process of soil property prediction. Bui et al. (2022) proposed a hybrid Teaching Learning-Based Optimization-Artificial Neural Network (TLBO-ANN) model to predict the soil permeability coefficient (k-value). The study utilized a dataset of 84 soil samples from the Da Nang-Quang Ngai expressway project in Vietnam. Input parameters included natural water content, void ratio, specific gravity, liquid limit, plastic limit, and clay content. The dataset was normalized and split into 70% for training and 30% for testing. The TLBO algorithm was employed to optimize the ANN, improving its convergence speed and accuracy. Statistical validation metrics, including correlation coefficient (R = 0.905), RMSE, and MAE, confirmed the model’s superior predictive performance compared to existing methods. The authors emphasized that the hybrid approach effectively combines the strengths of TLBO and ANN, offering a robust solution for k-value prediction with minimal computational effort. R. Zhang &amp; Zhang, (2024) investigated the prediction of soil permeability coefficients using gene expression programming (GEP), comparing it with random forest (RF), group method of data handling (GMDH), and eight empirical models. They compiled a dataset of 81 samples using parameters such as effective size (d10), mean grain size (d50), particle diameters at 60% cumulative content (d60), and void ratio (e). The GEP model exhibited high accuracy (R² = 0.937) and outperformed empirical models, demonstrating the significant influence of particle size and void ratio on permeability. Sensitivity and SHAP analyses ranked d10 as the most impactful feature, followed by d50 and e, while d60 had negligible effects. The study underscores GEP’s ability to provide explicit predictive equations suitable for engineering applications, such as seepage analysis and pollutant transport in soils, enhancing its relevance for integrating ML in geotechnical engineering. Ahmad et al. (2022) applied Gaussian process regression (GPR) to estimate the soil permeability coefficient using six input parameters: liquid limit (LL), plastic limit (PL), clay content (CC), void ratio (e), natural water content (w), and specific density (γ). They developed and compared GPR models with different kernel functions—Pearson universal kernel (PUK), radial basis function (RBF), and polynomial kernel (Poly). The dataset, consisting of 84 soil samples from the Da Nang–Quang Ngai project in Vietnam, was divided into 70% training and 30% testing subsets. The GPR-PUK model outperformed others with an R² of 0.951, showcasing its superior predictive accuracy. Sensitivity analysis indicated that natural water content (w) and void ratio (e) were the most significant predictors, while specific density (γ) was the least influential. Comparisons with ANN, SVM, RF, and M5P models revealed GPR-PUK’s superior performance, highlighting its potential in geotechnical applications. This study emphasizes the efficacy of GPR models in achieving high precision with limited data and underscores the importance of appropriate kernel function selection in ML modeling. Tan et al. (2023) explored the use of ML models to predict the hydraulic conductivity of compacted soil barriers used in landfill liners and covers. Their study utilized a database of 329 records, comprising 12 impact factors, including void ratio, fines content, specific gravity, and degree of saturation after compaction. The authors employed three ML algorithms—Random Forest (RF), Gradient Boosting Decision Tree (GBDT), and Neural Network (NNW)—and compared them with Multiple Linear Regression (MLR). The RF model demonstrated superior accuracy, achieving 93% of predictions within a 10-fold difference from measured values. Sensitivity analysis identified void ratio, fines content, and specific gravity as the most influential factors. To enhance usability, the authors developed simplified models requiring fewer input variables without significantly compromising predictive accuracy. These findings underscore the effectiveness of ML in streamlining soil evaluation processes for landfill applications, emphasizing data-driven feature selection and validation. B. Singh et al. (2021) investigated the permeability of soil using support vector machines (SVM), Gaussian process regression (GP), random forest (RF), and multi-linear regression (MLR). They utilized 95 datasets, with inputs including percentages of sand and fly ash, specific gravity, time, and water head, and found that the Pearson VII kernel function-based SVM achieved the highest accuracy (R = 0.97, NSE = 0.94). Sensitivity analysis revealed that time and water head significantly influenced predictions. The study highlights the efficacy of ML techniques, particularly SVM, for reliable estimation of soil permeability, underscoring the importance of kernel function selection in modeling. Li et al. (2022) developed a soil database for Singapore that integrates predictions of soil permeability using ML techniques, particularly Random Forest (RF) and Artificial Neural Networks (ANN). The study highlights the importance of variables such as plasticity, grain size distribution, and spatial location in predicting permeability. A key finding was that the logarithmic transformation of permeability values enhanced model accuracy, with RF outperforming ANN, likely due to limited data availability. This work emphasizes the critical role of ML in creating geotechnical databases for applications such as regional water balance and slope stability analysis. V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability prediction by leveraging five non-wavelet and five wavelet-enhanced machine learning (ML) algorithms, including Multilayer Perceptron (MLP), Co-Active Neuro-Fuzzy Inference System (CANFIS), Support Vector Machine (SVM), Decision Tree (DT), and Random Forest (RF). The study employed a dataset comprising sand, silt, clay, organic content (OC), bulk density (BD), and particle density (PD) to develop the models, with the wavelet-transformed RF (W-RF) model achieving the highest accuracy. Statistical evaluations during training and testing phases showed that W-RF outperformed other models, with values such as NSE = 0.900 and RMSE = 1.53 cm/hr. Sensitivity analysis revealed that soil texture parameters (clay, silt, and sand) were the most influential factors in permeability prediction, ranking ahead of OC, BD, and PD. The study highlights the efficacy of wavelet-enhanced ML approaches in accurately predicting soil permeability, emphasizing their potential applications in geotechnical projects such as groundwater management and structural design.</p>
 </section>
-<section id="table-1-studies-on-using-ml-algorithms-in-predicting-soil-permeability." class="level1">
-<h1>Table 1: Studies on using ML algorithms in predicting soil permeability.</h1>
+<section id="table-1-studies-on-using-ml-algorithms-in-predicting-soil-permeability" class="level1">
+<h1>Table 1: Studies on using ML algorithms in predicting soil permeability</h1>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
 <col style="width: 16%">
-<col style="width: 32%">
+<col style="width: 28%">
 <col style="width: 10%">
-<col style="width: 4%">
+<col style="width: 5%">
 <col style="width: 11%">
-<col style="width: 16%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -3240,6 +3240,15 @@ Ganjidoost et al. (2016) introduced a hybrid Genetic Algorithm Adaptive Network
 <td>R = 0.9387, R² = 0.881, MAE = 0.0034, RMSE = 0.0047</td>
 </tr>
 <tr class="even">
+<td></td>
+<td>CatBoost</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R = 0.9321, R² = 0.889, MAE = 0.0027, RMSE = 0.0043</td>
+</tr>
+<tr class="odd">
 <td>(Tan et al., 2023)</td>
 <td>RF</td>
 <td>Void ratio, fines content, specific gravity, degree of saturation after compaction, plasticity index</td>
@@ -3248,7 +3257,7 @@ Ganjidoost et al. (2016) introduced a hybrid Genetic Algorithm Adaptive Network
 <td>Dataset compiled from multiple sources</td>
 <td>?</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td></td>
 <td>GBDT</td>
 <td></td>
@@ -3257,7 +3266,7 @@ Ganjidoost et al. (2016) introduced a hybrid Genetic Algorithm Adaptive Network
 <td></td>
 <td>?</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td></td>
 <td>ANN</td>
 <td></td>
@@ -3266,7 +3275,7 @@ Ganjidoost et al. (2016) introduced a hybrid Genetic Algorithm Adaptive Network
 <td></td>
 <td>?</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td></td>
 <td>Multiple Linear Regression</td>
 <td></td>
@@ -3275,7 +3284,7 @@ Ganjidoost et al. (2016) introduced a hybrid Genetic Algorithm Adaptive Network
 <td></td>
 <td>?</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>(B. Singh et al., 2021)</td>
 <td>SVM with Pearson VII Kernel</td>
 <td>Fly ash, sand, specific gravity, time, head</td>
@@ -3283,6 +3292,204 @@ Ganjidoost et al. (2016) introduced a hybrid Genetic Algorithm Adaptive Network
 <td>95 samples</td>
 <td>NA</td>
 <td>R = 0.9708, RMSE = 0.0190, NSE = 0.9419</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>SVM with Radial Basis Kernel</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R = 0.9458, RMSE = 0.0257, NSE = 0.8943</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Gaussian Process (GP) with Pearson VII Kernel</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R = 0.7113, RMSE = 0.0723, NSE = 0.1626</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Gaussian Process (GP) with Radial Basis Kernel</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R = 0.9210, RMSE = 0.0343, NSE = 0.8113</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>RF</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R = 0.9372, RMSE = 0.0309, NSE = 0.8476</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Multi-Linear Regression (MLR)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R = 0.8456, RMSE = 0.0463, NSE = 0.6566</td>
+</tr>
+<tr class="odd">
+<td>(Li et al., 2022)</td>
+<td>ANN</td>
+<td>Plasticity, grain size, location</td>
+<td>Soil permeability coefficient</td>
+<td>59 samples</td>
+<td>Samples from Singapore</td>
+<td>MAE = 1.54e-6, RMSE = 2.14e-6</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>RF</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>MAE = 2.34e-6, RMSE = 3.07e-6</td>
+</tr>
+<tr class="odd">
+<td>(V. K. Singh et al., 2020)</td>
+<td>MLP</td>
+<td>Sand, silt, clay, organic content, bulk density, particle density</td>
+<td>Soil permeability coefficient</td>
+<td>180 samples</td>
+<td>Various soil types in India</td>
+<td>NSE = 0.724, WI = 0.914, RMSE = 4.208</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>CANFIS</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>NSE = 0.739, WI = 0.926, RMSE = 3.974</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SVM</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>NSE = 0.803, WI = 0.945, RMSE = 3.006</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>DT</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>NSE = 0.847, WI = 0.959, RMSE = 2.338</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>RF</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>NSE = 0.849, WI = 0.956, RMSE = 2.304</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>W-RF</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>NSE = 0.900, WI = 0.972, RMSE = 1.530</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>W-DT</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>NSE = 0.889, WI = 0.969, RMSE = 1.699</td>
+</tr>
+<tr class="even">
+<td>(Pham et al., 2021)</td>
+<td>ANN</td>
+<td>Water content, void ratio, specific density, liquid limit, plastic limit, clay content</td>
+<td>Soil permeability coefficient</td>
+<td>84 samples</td>
+<td>Data was collected from the detailed design state investigations of Da Nang-Quang Ngai expressway development project</td>
+<td>R = 0.845, RMSE = 0.001, MAE = 0.005</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SVM</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R = 0.844, RMSE = 0.0098, MAE = 0.0064</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>RF</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R = 0.851, RMSE = 0.0084, MAE = 0.0049</td>
+</tr>
+<tr class="odd">
+<td>(Tran, 2022)</td>
+<td>GB</td>
+<td>Water content, void ratio, specific density, liquid limit, plastic limit, clay content, plasticity index</td>
+<td>Soil permeability coefficient</td>
+<td>84 samples</td>
+<td>Dataset compiled from multiple sources</td>
+<td>R² = 0.971, RMSE = 0.199×10⁻¹¹ m/s, MAE = 0.161×10⁻¹¹ m/s, MAPE = 0.185%</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>RF</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R² = 0.961, RMSE = 0.236×10⁻¹¹ m/s, MAE = 0.196×10⁻¹¹ m/s, MAPE = 0.238%</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SVM</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R² = 0.819 (testing), RMSE = 0.199×10⁻¹¹ m/s, MAE = 0.181×10⁻¹¹ m/s</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>KNN</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R² = 0.715 (testing), RMSE = 0.801×10⁻¹¹ m/s, MAE = 0.293×10⁻¹¹ m/s</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>LightGBM</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>R² = 0.522 (testing), RMSE = 1.054×10⁻¹¹ m/s, MAE = 0.855×10⁻¹¹ m/s</td>
 </tr>
 </tbody>
 </table>
@@ -3828,24 +4035,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>Li et al. (2022) developed a soil database for Singapore that integrates predictions of soil permeability using ML techniques, particularly Random Forest (RF) and Artificial Neural Networks (ANN). The study highlights the importance of variables such as plasticity, grain size distribution, and spatial location in predicting permeability. A key finding was that the logarithmic transformation of permeability values enhanced model accuracy, with RF outperforming ANN, likely due to limited data availability. This work emphasizes the critical role of ML in creating geotechnical databases for applications such as regional water balance and slope stability analysis.</span>
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability prediction by leveraging five non-wavelet and five wavelet-enhanced machine learning (ML) algorithms, including Multilayer Perceptron (MLP), Co-Active Neuro-Fuzzy Inference System (CANFIS), Support Vector Machine (SVM), Decision Tree (DT), and Random Forest (RF). The study employed a dataset comprising sand, silt, clay, organic content (OC), bulk density (BD), and particle density (PD) to develop the models, with the wavelet-transformed RF (W-RF) model achieving the highest accuracy. Statistical evaluations during training and testing phases showed that W-RF outperformed other models, with values such as NSE = 0.900 and RMSE = 1.53 cm/hr. Sensitivity analysis revealed that soil texture parameters (clay, silt, and sand) were the most influential factors in permeability prediction, ranking ahead of OC, BD, and PD. The study highlights the efficacy of wavelet-enhanced ML approaches in accurately predicting soil permeability, emphasizing their potential applications in geotechnical projects such as groundwater management and structural design.</span>
 <span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu"># Table 1: Studies on using ML algorithms in predicting soil permeability.</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu"># Table 1: Studies on using ML algorithms in predicting soil permeability</span></span>
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>| Reference                | ML models                                         | Input Parameters                                                                                   | Output Parameter              | Dataset Size | Source of data/Location           | Model Accuracy                                     |</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>|--------------------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------|--------------------------------|--------------|-----------------------------------|----------------------------------------------------|</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>| (Ganjidoost et al., 2016)| Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS) | Water content, dry density, saturation, Atterberg limits, gravel, sand, clay, fines percentage     | Soil permeability coefficient | 610 samples  | NA                                | R² = 0.975                                         |</span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>| (Sinha &amp; Wang, 2008)     | ANN                                               | Degree of compaction, mean grain size, effective grain size, plastic limit, liquid limit           | Soil permeability coefficient | 55 samples   | NA                                | R² = 0.901                                         |</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>| (Bui et al., 2022)       | Teaching-Learning-Based Optimization of ANN (TLBO-ANN) | Water content, void ratio, specific density, liquid limit, plastic limit, clay content            | Soil permeability coefficient | 84 samples   | NA                                | R = 0.905, RMSE = 0.351, MAE = 0.198              |</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>| (R. Zhang &amp; Zhang, 2024) | Gene Expression Programming                       | Effective size, mean grain size, particle size, void ratio                                         | Soil permeability coefficient | 81 samples   | Dataset compiled from multiple sources | R² = 0.937, RMSE = 0.000483, MAE = 0.000245        |</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>|                          | RF                                                |                                                                                                    |                                |              |                                   | R² = 0.949, RMSE = 0.000752, MAE = 0.000269        |</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>|                          | Group Method of Data Handling                     |                                                                                                    |                                |              |                                   | R² = 0.808, RMSE = 0.000907, MAE = 0.000414        |</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>| (Ahmad et al., 2022)     | Gaussian Process Regression (PUK)                | Liquid limit, plastic limit, clay content, void ratio, natural water content, specific density     | Soil permeability coefficient | 84 samples   | Dataset compiled from multiple sources | R = 0.9754, R² = 0.951, MAE = 0.0037, RMSE = 0.0062 |</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>|                          | Gaussian Process Regression (Poly)               |                                                                                                    |                                |              |                                   | R = 0.9624, R² = 0.926, MAE = 0.0223, RMSE = 0.0634 |</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>|                          | Gaussian Process Regression (RBF)                |                                                                                                    |                                |              |                                   | R = 0.9387, R² = 0.881, MAE = 0.0034, RMSE = 0.0047 |</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>| (Tan et al., 2023)       | RF                                                | Void ratio, fines content, specific gravity, degree of saturation after compaction, plasticity index | Soil permeability coefficient | 329 samples  | Dataset compiled from multiple sources | ?                                                |</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>|                          | GBDT                                             |                                                                                                    |                                |              |                                   | ?                                                |</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>|                          | ANN                                              |                                                                                                    |                                |              |                                   | ?                                                |</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>|                          | Multiple Linear Regression                        |                                                                                                    |                                |              |                                   | ?                                                |</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>| (B. Singh et al., 2021)  | SVM with Pearson VII Kernel                       | Fly ash, sand, specific gravity, time, head                                                       | Soil permeability coefficient | 95 samples   | NA                                | R = 0.9708, RMSE = 0.0190, NSE = 0.9419            |</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>| Reference                | ML models                                       | Input Parameters                                                                   | Output Parameter              | Dataset Size   | Source of data/Location           | Model Accuracy                                         |</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>|--------------------------|------------------------------------------------|------------------------------------------------------------------------------------|--------------------------------|----------------|-----------------------------------|--------------------------------------------------------|</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>| (Ganjidoost et al., 2016)| Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS) | Water content, dry density, saturation, Atterberg limits, gravel, sand, clay, fines percentage | Soil permeability coefficient | 610 samples    | NA                                | R² = 0.975                                             |</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>| (Sinha &amp; Wang, 2008)     | ANN                                            | Degree of compaction, mean grain size, effective grain size, plastic limit, liquid limit | Soil permeability coefficient | 55 samples     | NA                                | R² = 0.901                                             |</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>| (Bui et al., 2022)       | Teaching-Learning-Based Optimization of ANN (TLBO-ANN) | Water content, void ratio, specific density, liquid limit, plastic limit, clay content | Soil permeability coefficient | 84 samples     | NA                                | R = 0.905, RMSE = 0.351, MAE = 0.198                   |</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>| (R. Zhang &amp; Zhang, 2024) | Gene Expression Programming                    | Effective size, mean grain size, particle size, void ratio                         | Soil permeability coefficient | 81 samples     | Dataset compiled from multiple sources | R² = 0.937, RMSE = 0.000483, MAE = 0.000245            |</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>|                          | RF                                             |                                                                                    |                                |                |                                   | R² = 0.949, RMSE = 0.000752, MAE = 0.000269            |</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>|                          | Group Method of Data Handling                  |                                                                                    |                                |                |                                   | R² = 0.808, RMSE = 0.000907, MAE = 0.000414            |</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>| (Ahmad et al., 2022)     | Gaussian Process Regression (PUK)             | Liquid limit, plastic limit, clay content, void ratio, natural water content, specific density | Soil permeability coefficient | 84 samples     | Dataset compiled from multiple sources | R = 0.9754, R² = 0.951, MAE = 0.0037, RMSE = 0.0062     |</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>|                          | Gaussian Process Regression (Poly)            |                                                                                    |                                |                |                                   | R = 0.9624, R² = 0.926, MAE = 0.0223, RMSE = 0.0634    |</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>|                          | Gaussian Process Regression (RBF)             |                                                                                    |                                |                |                                   | R = 0.9387, R² = 0.881, MAE = 0.0034, RMSE = 0.0047    |</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>|                          | CatBoost                                      |                                                                                    |                                |                |                                   | R = 0.9321, R² = 0.889, MAE = 0.0027, RMSE = 0.0043    |</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>| (Tan et al., 2023)       | RF                                             | Void ratio, fines content, specific gravity, degree of saturation after compaction, plasticity index | Soil permeability coefficient | 329 samples    | Dataset compiled from multiple sources | ?                                                      |</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>|                          | GBDT                                           |                                                                                    |                                |                |                                   | ?                                                      |</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>|                          | ANN                                            |                                                                                    |                                |                |                                   | ?                                                      |</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>|                          | Multiple Linear Regression                     |                                                                                    |                                |                |                                   | ?                                                      |</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>| (B. Singh et al., 2021)  | SVM with Pearson VII Kernel                    | Fly ash, sand, specific gravity, time, head                                       | Soil permeability coefficient | 95 samples     | NA                                | R = 0.9708, RMSE = 0.0190, NSE = 0.9419                |</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>|                          | SVM with Radial Basis Kernel                  |                                                                                    |                                |                |                                   | R = 0.9458, RMSE = 0.0257, NSE = 0.8943                |</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>|                          | Gaussian Process (GP) with Pearson VII Kernel |                                                                                    |                                |                |                                   | R = 0.7113, RMSE = 0.0723, NSE = 0.1626                |</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>|                          | Gaussian Process (GP) with Radial Basis Kernel |                                                                                    |                                |                |                                   | R = 0.9210, RMSE = 0.0343, NSE = 0.8113                |</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>|                          | RF                                             |                                                                                    |                                |                |                                   | R = 0.9372, RMSE = 0.0309, NSE = 0.8476                |</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>|                          | Multi-Linear Regression (MLR)                 |                                                                                    |                                |                |                                   | R = 0.8456, RMSE = 0.0463, NSE = 0.6566                |</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>| (Li et al., 2022)        | ANN                                            | Plasticity, grain size, location                                                  | Soil permeability coefficient | 59 samples     | Samples from Singapore            | MAE = 1.54e-6, RMSE = 2.14e-6                          |</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>|                          | RF                                             |                                                                                    |                                |                |                                   | MAE = 2.34e-6, RMSE = 3.07e-6                          |</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>| (V. K. Singh et al., 2020)| MLP                                           | Sand, silt, clay, organic content, bulk density, particle density                 | Soil permeability coefficient | 180 samples    | Various soil types in India       | NSE = 0.724, WI = 0.914, RMSE = 4.208                  |</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>|                          | CANFIS                                        |                                                                                    |                                |                |                                   | NSE = 0.739, WI = 0.926, RMSE = 3.974                  |</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>|                          | SVM                                           |                                                                                    |                                |                |                                   | NSE = 0.803, WI = 0.945, RMSE = 3.006                  |</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>|                          | DT                                            |                                                                                    |                                |                |                                   | NSE = 0.847, WI = 0.959, RMSE = 2.338                  |</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>|                          | RF                                            |                                                                                    |                                |                |                                   | NSE = 0.849, WI = 0.956, RMSE = 2.304                  |</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>|                          | W-RF                                          |                                                                                    |                                |                |                                   | NSE = 0.900, WI = 0.972, RMSE = 1.530                  |</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>|                          | W-DT                                          |                                                                                    |                                |                |                                   | NSE = 0.889, WI = 0.969, RMSE = 1.699                  |</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>| (Pham et al., 2021)      | ANN                                           | Water content, void ratio, specific density, liquid limit, plastic limit, clay content | Soil permeability coefficient | 84 samples     | Data was collected from the detailed design state investigations of Da Nang-Quang Ngai expressway development project | R = 0.845, RMSE = 0.001, MAE = 0.005 |</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>|                          | SVM                                           |                                                                                    |                                |                |                                   | R = 0.844, RMSE = 0.0098, MAE = 0.0064                 |</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>|                          | RF                                            |                                                                                    |                                |                |                                   | R = 0.851, RMSE = 0.0084, MAE = 0.0049                 |</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>| (Tran, 2022)             | GB                                            | Water content, void ratio, specific density, liquid limit, plastic limit, clay content, plasticity index | Soil permeability coefficient | 84 samples     | Dataset compiled from multiple sources | R² = 0.971, RMSE = 0.199×10⁻¹¹ m/s, MAE = 0.161×10⁻¹¹ m/s, MAPE = 0.185% |</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>|                          | RF                                            |                                                                                    |                                |                |                                   | R² = 0.961, RMSE = 0.236×10⁻¹¹ m/s, MAE = 0.196×10⁻¹¹ m/s, MAPE = 0.238% |</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>|                          | SVM                                           |                                                                                    |                                |                |                                   | R² = 0.819 (testing), RMSE = 0.199×10⁻¹¹ m/s, MAE = 0.181×10⁻¹¹ m/s      |</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>|                          | KNN                                           |                                                                                    |                                |                |                                   | R² = 0.715 (testing), RMSE = 0.801×10⁻¹¹ m/s, MAE = 0.293×10⁻¹¹ m/s      |</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>|                          | LightGBM                                      |                                                                                    |                                |                |                                   | R² = 0.522 (testing), RMSE = 1.054×10⁻¹¹ m/s, MAE = 0.855×10⁻¹¹ m/s      |</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
