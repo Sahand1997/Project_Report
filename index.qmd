@@ -67,13 +67,244 @@ V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability p
 
 # Table 1: Studies on using ML algorithms in predicting soil permeability
 
-| Reference                  | ML Models                                            | Input Parameters                                                                 | Output Parameter            | Dataset Size | Source of Data/Location             | Model Accuracy                                                                                                                                     |
-|----------------------------|-----------------------------------------------------|----------------------------------------------------------------------------------|-----------------------------|--------------|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Ganjiodost et al., 2016    | Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS) | Water content, dry density, saturation, Atterberg limits, gravel, sand, clay, fines percentage | Soil permeability coefficient | 610 samples  | NA                                  | R²=0.975                                                                                                                                          |
-| Sinha & Wang, 2008         | ANN                                                 | Degree of compaction, mean grain size, effective grain size, plastic limit, liquid limit | Soil permeability coefficient | 55 samples   | NA                                  | R² = 0.901                                                                                                                                         |
-| Bui et al., 2022           | Teaching-Learning-Based Optimization of ANN (TLBO-ANN) | Water content, void ratio, specific density, liquid limit, plastic limit, clay content | Soil permeability coefficient | 84 samples   | NA                                  | R = 0.905, RMSE = 0.351, MAE = 0.198                                                                                                              |
-| R. Zhang & Zhang, 2024     | Gene Expression Programming                         | Effective size, mean grain size, particle size, void ratio                       | Soil permeability coefficient | 81 samples   | Dataset compiled from multiple sources | R² = 0.937, RMSE = 0.000483, MAE = 0.000245<br>R² = 0.949, RMSE = 0.000752, MAE = 0.000269<br>R² = 0.808, RMSE = 0.000907, MAE = 0.000414          |
-| Ahmad et al., 2022         | Gaussian Process Regression (PUK)<br>Gaussian Process Regression (Poly)<br>Gaussian Process Regression (RBF) | Liquid limit, plastic limit, clay content, void ratio, natural water content, specific density | Soil permeability coefficient | 84 samples   | Dataset compiled from multiple sources | R = 0.9754, R² = 0.951, MAE = 0.0037, RMSE = 0.0062<br>R = 0.9624, R² = 0.926, MAE = 0.0223, RMSE = 0.0634<br>R = 0.9387, R² = 0.881, MAE = 0.0034, RMSE = 0.0047 |
-| Tan et al., 2023           | RF<br>GBDT<br>ANN<br>Multiple Linear Regression     | Void ratio, fines content, specific gravity, degree of saturation after compaction, plasticity index | Soil permeability coefficient | 329 samples  | Dataset compiled from multiple sources | ?                                                                                                                                                  |
-| B. Singh et al., 2021      | SVM with Pearson VII Kernel<br>SVM with Radial Basis Kernel<br>Gaussian Process (GP) with Pearson VII Kernel | Fly ash, sand, specific gravity, time, head                                     | Soil permeability coefficient | 95 samples   | NA                                  | R = 0.9708, RMSE = 0.0190, NSE = 0.9419<br>R = 0.9458, RMSE = 0.0257, NSE = 0.8943<br>R = 0.7113, RMSE = 0.0723, NSE = 0.1626                     |
+<table border="1">
+    <thead>
+        <tr>
+            <th>Reference</th>
+            <th>ML models</th>
+            <th>Input Parameters</th>
+            <th>Output Parameter</th>
+            <th>Dataset Size</th>
+            <th>Source of data/Location</th>
+            <th>Model Accuracy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>(Ganjidoost et al., 2016)</td>
+            <td>Algorithm Adaptive Network-Based Fuzzy Inference System (GA-ANFIS)</td>
+            <td>Water content, dry density, saturation, Atterberg limits, gravel, sand, clay, fines percentage</td>
+            <td>Soil permeability coefficient</td>
+            <td>610 samples</td>
+            <td>NA</td>
+            <td>R<sup>2</sup>=0.975</td>
+        </tr>
+        <tr>
+            <td>(Sinha &amp; Wang, 2008)</td>
+            <td>ANN</td>
+            <td>Degree of compaction, mean grain size, effective grain size, plastic limit, liquid limit</td>
+            <td>Soil permeability coefficient</td>
+            <td>55 samples</td>
+            <td>NA</td>
+            <td>R<sup>2</sup>=0.901</td>
+        </tr>
+        <tr>
+            <td>(Bui et al., 2022)</td>
+            <td>Teaching-Learning-Based Optimization of ANN (TLBO-ANN)</td>
+            <td>Water content, void ratio, specific density, liquid limit, plastic limit, clay content</td>
+            <td>Soil permeability coefficient</td>
+            <td>84 samples</td>
+            <td>NA</td>
+            <td>R=0.905, RMSE=0.351, MAE=0.198</td>
+        </tr>
+        <tr>
+            <td rowspan="3">(R. Zhang &amp; Zhang, 2024)</td>
+            <td>Gene Expression Programming</td>
+            <td rowspan="3">Effective size, mean grain size, particle size, void ratio</td>
+            <td rowspan="3">Soil permeability coefficient</td>
+            <td rowspan="3">81 samples</td>
+            <td rowspan="3">Dataset compiled from multiple sources</td>
+            <td>R<sup>2</sup>=0.937, RMSE=0.000483, MAE=0.000245</td>
+        </tr>
+        <tr>
+            <td>RF</td>
+            <td>R<sup>2</sup>=0.949, RMSE=0.000752, MAE=0.000269</td>
+        </tr>
+        <tr>
+            <td>Group Method of Data Handling</td>
+            <td>R<sup>2</sup>=0.808, RMSE=0.000907, MAE=0.000414</td>
+        </tr>
+        <tr>
+            <td rowspan="4">(Ahmad et al., 2022)</td>
+            <td>Gaussian Process Regression (PUK)</td>
+            <td rowspan="4">Liquid limit, plastic limit, clay content, void ratio, natural water content, specific density</td>
+            <td rowspan="4">Soil permeability coefficient</td>
+            <td rowspan="4">84 samples</td>
+            <td rowspan="4">Dataset compiled from multiple sources</td>
+            <td>R=0.9754, R<sup>2</sup>=0.951, MAE=0.0037, RMSE=0.0062</td>
+        </tr>
+        <tr>
+            <td>Gaussian Process Regression (Poly)</td>
+            <td>R=0.9624, R<sup>2</sup>=0.926, MAE=0.0223, RMSE=0.0634</td>
+        </tr>
+        <tr>
+            <td>Gaussian Process Regression (RBF)</td>
+            <td>R=0.9387, R<sup>2</sup>=0.881, MAE=0.0034, RMSE=0.0047</td>
+        </tr>
+        <tr>
+            <td>CatBoost</td>
+            <td>R=0.9321, R<sup>2</sup>=0.889, MAE=0.0027, RMSE=0.0043</td>
+        </tr>
+        <tr>
+            <td rowspan="4">(Tan et al., 2023)</td>
+            <td>RF</td>
+            <td rowspan="4">Void ratio, fines content, specific gravity, degree of saturation after compaction, plasticity index</td>
+            <td rowspan="4">Soil permeability coefficient</td>
+            <td rowspan="4">329 samples</td>
+            <td rowspan="4">Dataset compiled from multiple sources</td>
+            <td>R<sup>2</sup>=0.937, RMSE=0.000483</td>
+        </tr>
+        <tr>
+            <td>GBDT</td>
+            <td>R<sup>2</sup>=0.949, RMSE=0.000752</td>
+        </tr>
+        <tr>
+            <td>ANN</td>
+            <td>R<sup>2</sup>=0.808, RMSE=0.000907</td>
+        </tr>
+        <tr>
+            <td>Multiple Linear Regression</td>
+            <td>R<sup>2</sup>=0.949, RMSE=0.000752</td>
+
+        <tr>
+    <td rowspan="6">(B. Singh et al., 2021)</td>
+    <td>SVM with Pearson VII Kernel</td>
+    <td rowspan="6">Fly ash, sand, specific gravity, time, head</td>
+    <td rowspan="6">Soil permeability coefficient</td>
+    <td rowspan="6">95 samples</td>
+    <td rowspan="6">NA</td>
+    <td>R = 0.9708, RMSE = 0.0190, NSE = 0.9419</td>
+    </tr>
+    <tr>
+        <td>SVM with Radial Basis Kernel</td>
+        <td>R = 0.9458, RMSE = 0.0257, NSE = 0.8943</td>
+    </tr>
+    <tr>
+        <td>Gaussian Process (GP) with Pearson VII Kernel</td>
+        <td>R = 0.7113, RMSE = 0.0723, NSE = 0.1626</td>
+    </tr>
+    <tr>
+        <td>Gaussian Process (GP) with Radial Basis Kernel</td>
+        <td>R = 0.9210, RMSE = 0.0343, NSE = 0.8113</td>
+    </tr>
+    <tr>
+        <td>RF</td>
+        <td>R = 0.9372, RMSE = 0.0309, NSE = 0.8476</td>
+    </tr>
+    <tr>
+        <td>Multi-Linear Regression (MLR)</td>
+        <td>R = 0.8456, RMSE = 0.0463, NSE = 0.6566</td>
+    </tr>
+    <tr>
+        <td rowspan="2">(Li et al., 2022)</td>
+        <td>ANN</td>
+        <td>Plasticity, grain size, location</td>
+        <td>Soil permeability coefficient</td>
+        <td>59 samples</td>
+        <td>Samples from Singapore</td>
+        <td>MAE = 1.54e-6, RMSE = 2.14e-6</td>
+    </tr>
+    <tr>
+        <td>RF</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>MAE = 2.34e-6, RMSE = 3.07e-6</td>
+    </tr>
+    <tr>
+        <td rowspan="7">(V. K. Singh et al., 2020)</td>
+        <td>MLP</td>
+        <td rowspan="7">Sand, silt, clay, organic content, bulk density, particle density</td>
+        <td rowspan="7">Soil permeability coefficient</td>
+        <td rowspan="7">180 samples</td>
+        <td rowspan="7">Various soil types in India</td>
+        <td>NSE = 0.724, WI = 0.914, RMSE = 4.208</td>
+    </tr>
+    <tr>
+        <td>CANFIS</td>
+        <td>NSE = 0.739, WI = 0.926, RMSE = 3.974</td>
+    </tr>
+    <tr>
+        <td>SVM</td>
+        <td>NSE = 0.803, WI = 0.945, RMSE = 3.006</td>
+    </tr>
+    <tr>
+        <td>DT</td>
+        <td>NSE = 0.847, WI = 0.959, RMSE = 2.338</td>
+    </tr>
+    <tr>
+        <td>RF</td>
+        <td>NSE = 0.849, WI = 0.956, RMSE = 2.304</td>
+    </tr>
+    <tr>
+        <td>W-RF</td>
+        <td>NSE = 0.900, WI = 0.972, RMSE = 1.530</td>
+    </tr>
+    <tr>
+        <td>W-DT</td>
+        <td>NSE = 0.889, WI = 0.969, RMSE = 1.699</td>
+    </tr>
+    <tr>
+        <td rowspan="3">(Pham et al., 2021)</td>
+        <td>ANN</td>
+        <td>Water content, void ratio, specific density, liquid limit, plastic limit, clay content</td>
+        <td>Soil permeability coefficient</td>
+        <td>84 samples</td>
+        <td>Data was collected from the detailed design state investigations of Da Nang-Quang Ngai expressway development project</td>
+        <td>R = 0.845, RMSE = 0.001, MAE = 0.005</td>
+    </tr>
+    <tr>
+        <td>SVM</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>R = 0.844, RMSE = 0.0098, MAE = 0.0064</td>
+    </tr>
+    <tr>
+        <td>RF</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>R = 0.851, RMSE = 0.0084, MAE = 0.0049</td>
+    </tr>
+    <tr>
+        <td rowspan="5">(Tran, 2022)</td>
+        <td>GB</td>
+        <td>Water content, void ratio, specific density, liquid limit, plastic limit, clay content, plasticity index</td>
+        <td>Soil permeability coefficient</td>
+        <td>84 samples</td>
+        <td>Dataset compiled from multiple sources</td>
+        <td>R<sup>2</sup> = 0.971, RMSE = 0.199×10⁻¹¹ m/s, MAE = 0.161×10⁻¹¹ m/s, MAPE = 0.185%</td>
+    </tr>
+    <tr>
+        <td>RF</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>R<sup>2</sup> = 0.961, RMSE = 0.236×10⁻¹¹ m/s, MAE = 0.196×10⁻¹¹ m/s, MAPE = 0.238%</td>
+    </tr>
+    <tr>
+        <td>SVM</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>R<sup>2</sup> = 0.819 (testing), RMSE = 0.199×10⁻¹¹ m/s, MAE = 0.181×10⁻¹¹ m/s</td>
+    </tr>
+    <tr>
+        <td>KNN</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>R<sup>2</sup> = 0.715 (testing), RMSE = 0.801×10⁻¹¹ m/s, MAE = 0.293×10⁻¹¹ m/s</td>
+    </tr>
+    <tr>
+        <td>LightGBM</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>R<sup>2</sup> = 0.522 (testing), RMSE = 1.054×10⁻¹¹ m/s, MAE = 0.855×10⁻¹¹ m/s</td>
+    </tr>
+       </tbody>
+</table>
+
 
