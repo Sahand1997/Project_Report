@@ -196,7 +196,7 @@ V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability p
         <td>R = 0.8456, RMSE = 0.0463, NSE = 0.6566</td>
     </tr>
     <tr>
-        <td rowspan="2">(Li et al., 2022)</td>
+        <td rowspan="7">(Li et al., 2022)</td>
         <td>ANN</td>
         <td>Plasticity, grain size, location</td>
         <td>Soil permeability coefficient</td>
@@ -212,7 +212,7 @@ V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability p
         <td>MAE = 2.34e-6, RMSE = 3.07e-6</td>
     </tr>
     <tr>
-        <td rowspan="7">(V. K. Singh et al., 2020)</td>
+        <td rowspan="8">(V. K. Singh et al., 2020)</td>
         <td>MLP</td>
         <td rowspan="7">Sand, silt, clay, organic content, bulk density, particle density</td>
         <td rowspan="7">Soil permeability coefficient</td>
@@ -245,7 +245,7 @@ V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability p
         <td>NSE = 0.889, WI = 0.969, RMSE = 1.699</td>
     </tr>
     <tr>
-        <td rowspan="3">(Pham et al., 2021)</td>
+        <td rowspan="9">(Pham et al., 2021)</td>
         <td>ANN</td>
         <td>Water content, void ratio, specific density, liquid limit, plastic limit, clay content</td>
         <td>Soil permeability coefficient</td>
@@ -268,7 +268,7 @@ V. K. Singh et al. (2020) conducted a comprehensive study on soil permeability p
         <td>R = 0.851, RMSE = 0.0084, MAE = 0.0049</td>
     </tr>
     <tr>
-        <td rowspan="5">(Tran, 2022)</td>
+        <td rowspan="10">(Tran, 2022)</td>
         <td>GB</td>
         <td>Water content, void ratio, specific density, liquid limit, plastic limit, clay content, plasticity index</td>
         <td>Soil permeability coefficient</td>
